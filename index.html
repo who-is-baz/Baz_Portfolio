@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio | Mi Portafolio</title>
+    <img src="./img/logo_b_2.png" alt="Logo" style="display:none;">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --primary-color: #00d084;
+            --dark-bg: #0a0e11;
+            --text-light: #e8e8e8;
+            --rick-green: #1bff00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 208, 132, 0.2);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-color) !important;
+            letter-spacing: 0.5px;
+        }
+
+        .navbar-brand img {
+            max-height: 50px;
+            width: auto;
+            filter: drop-shadow(0 0 8px rgba(0, 208, 132, 0.4));
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand img:hover {
+            filter: drop-shadow(0 0 15px rgba(0, 208, 132, 0.7));
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            color: var(--text-light) !important;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(0, 208, 132, 0.1) 0%, rgba(0, 208, 132, 0.05) 100%);
+            padding: 3rem 0;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 2rem;
+        }
+
+        .hero-text {
+            text-align: left;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-circle {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(0, 208, 132, 0.6), 
+                        0 0 80px rgba(0, 208, 132, 0.3),
+                        inset 0 0 40px rgba(0, 208, 132, 0.2);
+            border: 3px solid rgba(0, 208, 132, 0.4);
+            animation: glow-pulse 3s ease-in-out infinite;
+        }
+
+        .profile-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% {
+                box-shadow: 0 0 40px rgba(0, 208, 132, 0.6), 
+                            0 0 80px rgba(0, 208, 132, 0.3),
+                            inset 0 0 40px rgba(0, 208, 132, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 60px rgba(0, 208, 132, 0.8), 
+                            0 0 100px rgba(0, 208, 132, 0.5),
+                            inset 0 0 50px rgba(0, 208, 132, 0.3);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--rick-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: left;
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 100%;
+            margin: 0 0 2rem 0;
+            opacity: 0.9;
+            text-align: left;
+        }
+
+        /* CTA Buttons */
+        .btn-primary {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #00b870;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 208, 132, 0.4);
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: flex-start;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 208, 132, 0.5);
+        }
+
+        /* Info Section */
+        .info-section {
+            background: linear-gradient(135deg, rgba(0, 208, 132, 0.15) 0%, rgba(0, 208, 132, 0.05) 100%);
+            padding: 4rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(0, 208, 132, 0.3);
+        }
+
+        .info-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* Accordion Styles */
+        .accordion {
+            background-color: transparent;
+            border: none;
+        }
+
+        .accordion-item {
+            background-color: rgba(0, 208, 132, 0.08);
+            border: 1px solid rgba(0, 208, 132, 0.2);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .accordion-button {
+            background-color: rgba(0, 208, 132, 0.1);
+            color: var(--text-light);
+            font-weight: 600;
+            border: none;
+            padding: 1.2rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(0, 208, 132, 0.2);
+            box-shadow: none;
+            color: var(--primary-color);
+        }
+
+        .accordion-button:hover {
+            background-color: rgba(0, 208, 132, 0.15);
+            color: var(--primary-color);
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(0, 208, 132, 0.3);
+            background-color: rgba(0, 208, 132, 0.15);
+        }
+
+        .accordion-button::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2300d084'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        }
+
+        .accordion-body {
+            background-color: rgba(0, 0, 0, 0.3);
+            color: var(--text-light);
+            border-top: 1px solid rgba(0, 208, 132, 0.2);
+            padding: 1.5rem;
+        }
+
+        .info-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .info-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.75rem 1.5rem;
+            border-left: 3px solid var(--primary-color);
+            padding-left: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .info-links a:hover {
+            padding-left: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        /* Education Containers */
+        .education-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            align-items: start;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(0, 208, 132, 0.15);
+        }
+
+        .education-container:last-child {
+            border-bottom: none;
+        }
+
+        .education-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 208, 132, 0.2);
+            border: 2px solid rgba(0, 208, 132, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 208, 132, 0.05);
+        }
+
+        .education-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .education-info h5 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-info p {
+            color: rgba(232, 232, 232, 0.8);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .education-period {
+            color: var(--rick-green);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .education-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            background-color: rgba(0, 208, 132, 0.2);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .education-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            box-shadow: 0 4px 12px rgba(0, 208, 132, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .education-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .education-image {
+                width: 100%;
+                height: 200px;
+            }
+        }
+
+        /* Skills Grid */
+        .skills-category {
+            margin-bottom: 2.5rem;
+        }
+
+        .skills-category h5 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid rgba(0, 208, 132, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card {
+            background: rgba(0, 208, 132, 0.08);
+            border: 1px solid rgba(0, 208, 132, 0.2);
+            border-radius: 10px;
+            padding: 1.2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: default;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .skill-card:hover {
+            background: rgba(0, 208, 132, 0.15);
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 208, 132, 0.25);
+        }
+
+        .skill-icon {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            width: 50px;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+            background-color: rgba(0, 208, 132, 0.05);
+            border-top: 1px solid rgba(0, 208, 132, 0.3);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            color: rgba(232, 232, 232, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.3rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .profile-circle {
+                width: 300px;
+                height: 300px;
+            }
+
+            .social-links {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#inicio"><img src="/img/baz_dev.png" alt="Logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobremi">Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobremi">Habilidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobremi">Proyectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobremi">Certificaciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobremi">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <!-- Texto a la izquierda -->
+            <div class="hero-text">
+                <h1>¡Hola, soy Ricardo Sebastián Balderas!</h1>
+                <h2>Estudiante de Ingeniería en T.I. | Desarrollador Web</h2>
+                <p>
+                    Bienvenido a mi portafolio. Soy un apasionado por la tecnología y el desarrollo de software orientado a crear soluciones innovadoras y eficientes.
+                    <br><br>
+                    Con experiencia en desarrollo web fullstack, diseño UI/UX y metodologías ágiles, busco constantemente expandir mis habilidades y enfrentar nuevos retos profesionales.
+                </p>
+                <a href="#sobremi" class="btn btn-primary">Explorar mi trabajo</a>
+
+                <!-- Social Links -->
+                <div class="social-links">
+                    <a href="https://github.com/bazbalderas" class="social-btn" title="GitHub">
+                        <i class="bi bi-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/t-p-ricardo-sebastián-balderas-gonzález-ba5257372" class="social-btn" title="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@bazito_dev06" class="social-btn" title="YouTube">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Imagen circular a la derecha -->
+            <div class="hero-image">
+                <div class="profile-circle">
+                    <img src="/img/baz.jpeg" alt="Sebastián Balderas">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accordions Sections -->
+    <section class="info-section" id="sobremi">
+        <div class="container">
+            <h3>Mi Portafolio Profesional</h3>
+            <div class="accordion" id="accordionSections">
+                <!-- Perfil Profesional -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAbout">
+                            <i class="bi bi-person-circle"></i> Perfil Profesional
+                        </button>
+                    </h2>
+                    <div id="collapseAbout" class="accordion-collapse collapse show" data-bs-parent="#accordionSections">
+                        <div class="accordion-body">
+                            <p>Estudiante de Ingeniería en Tecnologías de la Información e Innovación Digital con formación técnica en Programación. Enfocado en el desarrollo de software y soluciones digitales orientadas a la experiencia del usuario. Con capacidad comprobada para la resolución de problemas mediante metodologías ágiles y dominio de tecnologías como HTML5, Tailwind CSS, JavaScript, PHP, C y Java.</p>
+                            <p>Persona disciplinada, autodidacta y comprometida con el aprendizaje continuo más allá del ámbito universitario. Originario de Tamaulipas, actualmente estudiando en Querétaro, en constante desarrollo profesional y buscando ganarme las oportunidades mediante el conocimiento y la dedicación.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formación Académica -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEducation">
+                            <i class="bi bi-book"></i> Formación Académica
+                        </button>
+                    </h2>
+                    <div id="collapseEducation" class="accordion-collapse collapse" data-bs-parent="#accordionSections">
+                        <div class="accordion-body">
+                            <!-- UPQ -->
+                            <div class="education-container">
+                                <div class="education-image">
+                                    <img src="/img/UPQ.jpg" alt="Universidad Politécnica de Querétaro">
+                                </div>
+                                <div class="education-info">
+                                    <h5>Ingeniería en Tecnologías de la Información e Innovación Digital</h5>
+                                    <p><strong>Universidad Politécnica de Querétaro</strong></p>
+                                    <p class="education-period">Enero 2026 - Presente</p>
+                                    <p>Formación en tecnologías de la información, innovación digital y desarrollo de soluciones orientadas a la experiencia del usuario. Enfoque en metodologías ágiles y últimas tendencias tecnológicas.</p>
+                                    <a href="https://www.google.com/maps/search/Universidad+Politécnica+de+Querétaro" target="_blank" class="education-btn">
+                                        <i class="bi bi-geo-alt"></i> Ver en Google Maps
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- UPV -->
+                            <div class="education-container">
+                                <div class="education-image">
+                                    <img src="/img/UPV.png" alt="Universidad Politécnica de Victoria">
+                                </div>
+                                <div class="education-info">
+                                    <h5>T.S.U. en Desarrollo de Software Multiplataforma</h5>
+                                    <p><strong>Universidad Politécnica de Victoria</strong></p>
+                                    <p class="education-period">Sep. 2024 - Ago. 2026</p>
+                                    <p>Especialización en desarrollo de software multiplataforma, diseño de interfaces, bases de datos y arquitectura de sistemas. Experiencia práctica en proyectos integrales y despliegue en servidores cloud.</p>
+                                    <a href="https://www.google.com/maps/search/Universidad+Politécnica+de+Victoria+Tamaulipas" target="_blank" class="education-btn">
+                                        <i class="bi bi-geo-alt"></i> Ver en Google Maps
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- CBTis 271 -->
+                            <div class="education-container">
+                                <div class="education-image">
+                                    <img src="/img/cbtis_271.jpeg" alt="CBTis No. 271">
+                                </div>
+                                <div class="education-info">
+                                    <h5>Técnico en Programación</h5>
+                                    <p><strong>CBTis No. 271</strong></p>
+                                    <p class="education-period">Ago. 2021 - Sep. 2024</p>
+                                    <p>Formación técnica en programación, fundamentos de desarrollo de software, lógica de programación y primeras experiencias en lenguajes como C, Java y programación web. Base sólida en algoritmia y estructuras de datos.</p>
+                                    <a href="https://www.google.com/maps/search/CBTis+271+Tamaulipas" target="_blank" class="education-btn">
+                                        <i class="bi bi-geo-alt"></i> Ver en Google Maps
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Habilidades Técnicas -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSkills">
+                            <i class="bi bi-code-slash"></i> Habilidades Técnicas
+                        </button>
+                    </h2>
+                    <div id="collapseSkills" class="accordion-collapse collapse" data-bs-parent="#accordionSections">
+                        <div class="accordion-body">
+                            <!-- Front-End -->
+                            <div class="skills-category">
+                                <h5><i class="bi bi-palette"></i> Front-End</h5>
+                                <div class="skills-grid">
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><i class="bi bi-file-code"></i></div>
+                                        <div class="skill-name">HTML5</div>
+                                    </div>
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><i class="bi bi-palette-fill"></i></div>
+                                        <div class="skill-name">CSS3</div>
+                                    </div>
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" style="width:35px; height:35px; filter: brightness(1.2);" alt="Tailwind"></div>
+                                        <div class="skill-name">Tailwind</div>
+                                    </div>
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/bootstrap/bootstrap-original.svg" style="width:35px; height:35px;" alt="Bootstrap"></div>
+                                        <div class="skill-name">Bootstrap</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Back-End -->
+                            <div class="skills-category">
+                                <h5><i class="bi bi-cpu"></i> Back-End</h5>
+                                <div class="skills-grid">
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/javascript/javascript-original.svg" style="width:35px; height:35px;" alt="JavaScript"></div>
+                                        <div class="skill-name">JavaScript</div>
+                                    </div>
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/python/python-original.svg" style="width:35px; height:35px;" alt="Python"></div>
+                                        <div class="skill-name">Python</div>
+                                    </div>
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/nodejs/nodejs-original.svg" style="width:35px; height:35px;" alt="Node.js"></div>
+                                        <div class="skill-name">Node.js</div>
+                                    </div>
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/react/react-original.svg" style="width:35px; height:35px; filter: hue-rotate(180deg);" alt="React"></div>
+                                        <div class="skill-name">React</div>
+                                    </div>
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/php/php-original.svg" style="width:35px; height:35px;" alt="PHP"></div>
+                                        <div class="skill-name">PHP</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bases de Datos -->
+                            <div class="skills-category">
+                                <h5><i class="bi bi-database"></i> Base de Datos</h5>
+                                <div class="skills-grid">
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/mysql/mysql-original.svg" style="width:35px; height:35px;" alt="MySQL"></div>
+                                        <div class="skill-name">MySQL</div>
+                                    </div>
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><i class="bi bi-diagram-3"></i></div>
+                                        <div class="skill-name">SQL</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Otros Lenguajes -->
+                            <div class="skills-category">
+                                <h5><i class="bi bi-braces"></i> Otros Lenguajes</h5>
+                                <div class="skills-grid">
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/c/c-original.svg" style="width:35px; height:35px;" alt="C"></div>
+                                        <div class="skill-name">C</div>
+                                    </div>
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/java/java-original.svg" style="width:35px; height:35px;" alt="Java"></div>
+                                        <div class="skill-name">Java</div>
+                                    </div>
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/cplusplus/cplusplus-original.svg" style="width:35px; height:35px;" alt="C++"></div>
+                                        <div class="skill-name">C++</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Herramientas y Plataformas -->
+                            <div class="skills-category">
+                                <h5><i class="bi bi-tools"></i> Herramientas y Plataformas</h5>
+                                <div class="skills-grid">
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/git/git-original.svg" style="width:35px; height:35px;" alt="Git"></div>
+                                        <div class="skill-name">Git</div>
+                                    </div>
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/github/github-original.svg" style="width:35px; height:35px; filter: invert(1);" alt="GitHub"></div>
+                                        <div class="skill-name">GitHub</div>
+                                    </div>
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/vscode/vscode-original.svg" style="width:35px; height:35px;" alt="VS Code"></div>
+                                        <div class="skill-name">VS Code</div>
+                                    </div>
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/figma/figma-original.svg" style="width:35px; height:35px;" alt="Figma"></div>
+                                        <div class="skill-name">Figma</div>
+                                    </div>
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/linux/linux-original.svg" style="width:35px; height:35px;" alt="Linux"></div>
+                                        <div class="skill-name">Linux</div>
+                                    </div>
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><i class="bi bi-cloud"></i></div>
+                                        <div class="skill-name">DigitalOcean</div>
+                                    </div>
+                                    <div class="skill-card">
+                                        <div class="skill-icon"><i class="bi bi-file-earmark-pdf"></i></div>
+                                        <div class="skill-name">LaTeX</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Idiomas -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLanguages">
+                            <i class="bi bi-chat-left-text"></i> Idiomas
+                        </button>
+                    </h2>
+                    <div id="collapseLanguages" class="accordion-collapse collapse" data-bs-parent="#accordionSections">
+                        <div class="accordion-body">
+                            <div style="margin-bottom: 2rem;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                    <h5 style="color: var(--primary-color); margin: 0;"><i class="bi bi-globe"></i> Español</h5>
+                                    <span style="color: var(--rick-green); font-weight: 600;">Nativo</span>
+                                </div>
+                                <div style="width: 100%; height: 8px; background-color: rgba(0, 208, 132, 0.1); border-radius: 4px; overflow: hidden; margin-bottom: 1.5rem;">
+                                    <div style="width: 100%; height: 100%; background: linear-gradient(90deg, var(--primary-color), var(--rick-green)); border-radius: 4px;"></div>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 2rem;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                    <h5 style="color: var(--primary-color); margin: 0;"><i class="bi bi-globe"></i> Inglés</h5>
+                                    <span style="color: var(--rick-green); font-weight: 600;">Nivel B1</span>
+                                </div>
+                                <div style="width: 100%; height: 8px; background-color: rgba(0, 208, 132, 0.1); border-radius: 4px; overflow: hidden; margin-bottom: 1.5rem;">
+                                    <div style="width: 75%; height: 100%; background: linear-gradient(90deg, var(--primary-color), var(--rick-green)); border-radius: 4px;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                    <h5 style="color: var(--primary-color); margin: 0;"><i class="bi bi-globe"></i> Francés</h5>
+                                    <span style="color: var(--rick-green); font-weight: 600;">Nivel A1</span>
+                                </div>
+                                <div style="width: 100%; height: 8px; background-color: rgba(0, 208, 132, 0.1); border-radius: 4px; overflow: hidden;">
+                                    <div style="width: 25%; height: 100%; background: linear-gradient(90deg, var(--primary-color), var(--rick-green)); border-radius: 4px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experiencia en Proyectos -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProjects">
+                            <i class="bi bi-briefcase"></i> Experiencia en Proyectos
+                        </button>
+                    </h2>
+                    <div id="collapseProjects" class="accordion-collapse collapse" data-bs-parent="#accordionSections">
+                        <div class="accordion-body">
+                            <div style="margin-bottom: 2rem;">
+                                <h5 style="color: var(--primary-color); margin-bottom: 0.8rem;"><i class="bi bi-geo-alt"></i> <strong>Sistema de Gestión de Activos Fijos y Auditorías</strong></h5>
+                                <p style="color: var(--rick-green); font-weight: 600; margin-bottom: 0.5rem;">
+                                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/html5/html5-original.svg" style="width:20px; height:20px; display: inline-block; margin-right: 0.5rem;" alt="HTML">
+                                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" style="width:20px; height:20px; display: inline-block; margin-right: 0.5rem; filter: brightness(1.2);" alt="Tailwind">
+                                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/figma/figma-original.svg" style="width:20px; height:20px; display: inline-block; margin-right: 0.5rem;" alt="Figma">
+                                </p>
+                                <p><em>Universidad Politécnica de Querétaro</em></p>
+                                <p>Sistema integral para la identificación y seguimiento de activos mediante geolocalización y códigos QR. Responsable del desarrollo del frontend con HTML5 y Tailwind CSS para la vista principal. Se está desarrollando la interfaz en Figma.</p>
+                            </div>
+                            
+                            <div style="margin-bottom: 2rem;">
+                                <h5 style="color: var(--primary-color); margin-bottom: 0.8rem;"><i class="bi bi-hospital"></i> <strong>Sistema de Gestión Hospitalaria</strong></h5>
+                                <p style="color: var(--rick-green); font-weight: 600; margin-bottom: 0.5rem;">
+                                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/php/php-original.svg" style="width:20px; height:20px; display: inline-block; margin-right: 0.5rem;" alt="PHP">
+                                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/javascript/javascript-original.svg" style="width:20px; height:20px; display: inline-block; margin-right: 0.5rem;" alt="JavaScript">
+                                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/mysql/mysql-original.svg" style="width:20px; height:20px; display: inline-block; margin-right: 0.5rem;" alt="MySQL">
+                                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/html5/html5-original.svg" style="width:20px; height:20px; display: inline-block; margin-right: 0.5rem;" alt="HTML">
+                                </p>
+                                <p><em>Universidad Politécnica de Victoria</em></p>
+                                <p>Sistema web para la gestión de datos clínicos. Desarrollé el backend con PHP y JavaScript conectado a una base de datos MySQL mediante phpMyAdmin. El frontend fue construido con HTML5 y Tailwind CSS, y la aplicación fue desplegada en un servidor de DigitalOcean.</p>
+                            </div>
+                            
+                            <div>
+                                <h5 style="color: var(--primary-color); margin-bottom: 0.8rem;"><i class="bi bi-graph-up"></i> <strong>Sistema de Control de Inventario y Ventas</strong></h5>
+                                <p style="color: var(--rick-green); font-weight: 600; margin-bottom: 0.5rem;">
+                                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/figma/figma-original.svg" style="width:20px; height:20px; display: inline-block; margin-right: 0.5rem;" alt="Figma">
+                                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/html5/html5-original.svg" style="width:20px; height:20px; display: inline-block; margin-right: 0.5rem;" alt="HTML">
+                                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/bootstrap/bootstrap-original.svg" style="width:20px; height:20px; display: inline-block; margin-right: 0.5rem;" alt="Bootstrap">
+                                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/javascript/javascript-original.svg" style="width:20px; height:20px; display: inline-block; margin-right: 0.5rem;" alt="JavaScript">
+                                </p>
+                                <p><em>Universidad Politécnica de Victoria</em></p>
+                                <p>Plataforma de compra en línea. Participé en el diseño de la UI con Figma y en el desarrollo de frontend con HTML5 y Bootstrap. Implementé funciones básicas con JavaScript: login, carga de productos, ventas, etc.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certificaciones y Reconocimientos -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCertifications">
+                            <i class="bi bi-award"></i> Certificaciones y Reconocimientos
+                        </button>
+                    </h2>
+                    <div id="collapseCertifications" class="accordion-collapse collapse" data-bs-parent="#accordionSections">
+                        <div class="accordion-body">
+                            <div style="margin-bottom: 2rem;">
+                                <h5 style="color: var(--primary-color); margin-bottom: 1rem;"><i class="bi bi-play-circle"></i> <strong>Udemy</strong></h5>
+                                <ul style="margin-left: 1rem; color: rgba(232, 232, 232, 0.85);">
+                                    <li style="margin-bottom: 0.6rem;"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/cplusplus/cplusplus-original.svg" style="width:18px; height:18px; display: inline-block; margin-right: 0.5rem; vertical-align: middle;" alt="C++"> Mastering C++ Language — 2 horas</li>
+                                    <li style="margin-bottom: 0.6rem;"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/mysql/mysql-original.svg" style="width:18px; height:18px; display: inline-block; margin-right: 0.5rem; vertical-align: middle;" alt="SQL"> SQL: Creación y Gestión de Bases de Datos — 2 horas</li>
+                                    <li style="margin-bottom: 0.6rem;"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/mysql/mysql-original.svg" style="width:18px; height:18px; display: inline-block; margin-right: 0.5rem; vertical-align: middle;" alt="SQL"> SQL: De Principiante a Avanzado — 6.5 horas</li>
+                                    <li style="margin-bottom: 0.6rem;"><i class="bi bi-code-slash" style="color: var(--primary-color); margin-right: 0.5rem;"></i> Desarrollo Web con HTML, CSS y JavaScript — 3.5 horas</li>
+                                    <li style="margin-bottom: 0.6rem;"><i class="bi bi-lightbulb" style="color: var(--rick-green); margin-right: 0.5rem;"></i> Curso de IA Generativa + Prompt Engineering — 7 horas</li>
+                                    <li style="margin-bottom: 0.6rem;"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/linux/linux-original.svg" style="width:18px; height:18px; display: inline-block; margin-right: 0.5rem; vertical-align: middle;" alt="Linux"> Linux Introduction: Basic Linux Concepts — 3 horas</li>
+                                    <li style="margin-bottom: 0.6rem;"><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/git/git-original.svg" style="width:18px; height:18px; display: inline-block; margin-right: 0.5rem; vertical-align: middle;" alt="Git"> Introduction to Git & GitHub — 1 hora</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="margin-bottom: 2rem;">
+                                <h5 style="color: var(--primary-color); margin-bottom: 1rem;"><i class="bi bi-google"></i> <strong>Google</strong></h5>
+                                <ul style="margin-left: 1rem; color: rgba(232, 232, 232, 0.85);">
+                                    <li><i class="bi bi-lightbulb" style="color: var(--rick-green); margin-right: 0.5rem;"></i> Fundamentos de IA</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="margin-bottom: 2rem;">
+                                <h5 style="color: var(--primary-color); margin-bottom: 1rem;"><i class="bi bi-code"></i> <strong>Codedéx</strong></h5>
+                                <ul style="margin-left: 1rem; color: rgba(232, 232, 232, 0.85);">
+                                    <li><img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/python/python-original.svg" style="width:18px; height:18px; display: inline-block; margin-right: 0.5rem; vertical-align: middle;" alt="Python"> Certificación en Lenguaje de Programación Python</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h5 style="color: var(--primary-color); margin-bottom: 1rem;"><i class="bi bi-shield-check"></i> <strong>Universidad Autónoma de Tamaulipas</strong></h5>
+                                <ul style="margin-left: 1rem; color: rgba(232, 232, 232, 0.85);">
+                                    <li><i class="bi bi-lock" style="color: var(--primary-color); margin-right: 0.5rem;"></i> Introducción para ser Hacker Ético — 8 horas</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Competencias Profesionales -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCompetencies">
+                            <i class="bi bi-star"></i> Competencias Profesionales
+                        </button>
+                    </h2>
+                    <div id="collapseCompetencies" class="accordion-collapse collapse" data-bs-parent="#accordionSections">
+                        <div class="accordion-body">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                                <div>
+                                    <p style="margin-bottom: 0.8rem;"><i class="bi bi-lightbulb" style="color: var(--primary-color); margin-right: 0.8rem; font-weight: bold;"></i> Creatividad en resolución de problemas</p>
+                                    <p style="margin-bottom: 0.8rem;"><i class="bi bi-target" style="color: var(--primary-color); margin-right: 0.8rem; font-weight: bold;"></i> Orientación a resultados</p>
+                                    <p style="margin-bottom: 0.8rem;"><i class="bi bi-speedometer" style="color: var(--primary-color); margin-right: 0.8rem; font-weight: bold;"></i> Trabajo bajo presión</p>
+                                    <p style="margin-bottom: 0.8rem;"><i class="bi bi-people" style="color: var(--primary-color); margin-right: 0.8rem; font-weight: bold;"></i> Trabajo colaborativo en equipo</p>
+                                    <p style="margin-bottom: 0.8rem;"><i class="bi bi-book" style="color: var(--primary-color); margin-right: 0.8rem; font-weight: bold;"></i> Aprendizaje continuo y autodidacta</p>
+                                </div>
+                                <div>
+                                    <p style="margin-bottom: 0.8rem;"><i class="bi bi-chat-dots" style="color: var(--primary-color); margin-right: 0.8rem; font-weight: bold;"></i> Comunicación efectiva</p>
+                                    <p style="margin-bottom: 0.8rem;"><i class="bi bi-arrow-repeat" style="color: var(--primary-color); margin-right: 0.8rem; font-weight: bold;"></i> Adaptabilidad técnica</p>
+                                    <p style="margin-bottom: 0.8rem;"><i class="bi bi-person-hands" style="color: var(--primary-color); margin-right: 0.8rem; font-weight: bold;"></i> Habilidades interpersonales</p>
+                                    <p style="margin-bottom: 0.8rem;"><i class="bi bi-hand-thumbs-up" style="color: var(--primary-color); margin-right: 0.8rem; font-weight: bold;"></i> Mediación de conflictos</p>
+                                    <p style="margin-bottom: 0.8rem;"><i class="bi bi-link-45deg" style="color: var(--primary-color); margin-right: 0.8rem; font-weight: bold;"></i> Cohesión grupal</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contacto -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseContact">
+                            <i class="bi bi-chat-dots"></i> Contacto
+                        </button>
+                    </h2>
+                    <div id="collapseContact" class="accordion-collapse collapse" data-bs-parent="#accordionSections">
+                        <div class="accordion-body">
+                            <h5 style="color: var(--primary-color); margin-bottom: 1.5rem;"><i class="bi bi-telephone"></i> <strong>Información de Contacto</strong></h5>
+                            <p style="margin-bottom: 1rem;"><i class="bi bi-envelope" style="color: var(--primary-color); margin-right: 0.8rem;"></i><strong>Email:</strong> <a href="mailto:ricardosebastian469@gmail.com" style="color: var(--primary-color);">ricardosebastian469@gmail.com</a></p>
+                            <p style="margin-bottom: 1rem;"><i class="bi bi-telephone" style="color: var(--primary-color); margin-right: 0.8rem;"></i><strong>Teléfono:</strong> +52 834 308 2321</p>
+                            <p style="margin-bottom: 1.5rem;"><i class="bi bi-geo-alt" style="color: var(--primary-color); margin-right: 0.8rem;"></i><strong>Ubicación:</strong> Querétaro, Qro. (Originario de Tamaulipas)</p>
+                            
+                            <h5 style="color: var(--primary-color); margin-bottom: 1.5rem;"><i class="bi bi-share"></i> <strong>Conecta Conmigo</strong></h5>
+                            <div class="social-links" style="justify-content: flex-start;">
+                                <a href="https://github.com/bazbalderas" class="social-btn" title="GitHub">
+                                    <i class="bi bi-github"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/t-p-ricardo-sebastián-balderas-gonzález-ba5257372" class="social-btn" title="LinkedIn">
+                                    <i class="bi bi-linkedin"></i>
+                                </a>
+                                <a href="https://www.youtube.com/@bazito_dev06" class="social-btn" title="YouTube">
+                                    <i class="bi bi-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Ricardo Sebastián Balderas González. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
